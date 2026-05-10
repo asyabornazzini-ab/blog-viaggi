@@ -1,0 +1,48 @@
+/* Stili globali del sito.
+   I colori, i font e i ritmi tipografici li definiamo qui una volta sola,
+   poi tutte le pagine li ereditano. */
+
+:root {
+  --color-bg: #faf8f4;
+  --color-text: #1a1a1a;
+  --color-text-secondary: #6b6b66;
+  --color-text-tertiary: #9a9a92;
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-card-bg: #ffffff;
+
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

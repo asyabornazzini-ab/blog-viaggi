@@ -1,0 +1,196 @@
+---
+// La home del blog.
+// I viaggi qui sotto sono ESEMPI inseriti a mano.
+// In una sessione futura li sposteremo in file Markdown separati,
+// cosi' aggiungere un viaggio nuovo sara' come scrivere una pagina.
+
+import Base from '../layouts/Base.astro';
+
+const viaggi = [
+  {
+    slug: 'lisbona-alentejo',
+    titolo: "Lisbona e l'Alentejo",
+    periodo: 'Aprile 2024',
+    descrizione:
+      "Diciotto giorni tra azulejos, vento atlantico e villaggi dimenticati nell'entroterra.",
+    numeroRacconti: 0,
+    colore: 'coral',
+  },
+  {
+    slug: 'islanda',
+    titolo: "Strade d'Islanda",
+    periodo: 'Agosto 2023',
+    descrizione:
+      'Diecimila chilometri lungo la Ring Road, tra ghiacciai, sorgenti calde e fiordi vuoti.',
+    numeroRacconti: 0,
+    colore: 'teal',
+  },
+  {
+    slug: 'marocco',
+    titolo: 'Marocco, dal sud al deserto',
+    periodo: 'Marzo 2023',
+    descrizione:
+      "Da Marrakech a Merzouga, attraverso suk, kasbah e una notte sotto le stelle nell'Erg Chebbi.",
+    numeroRacconti: 0,
+    colore: 'amber',
+  },
+  {
+    slug: 'dolomiti',
+    titolo: 'Sentieri delle Dolomiti',
+    periodo: 'Settembre 2022',
+    descrizione:
+      'Sei giorni di rifugi e silenzi, dal Catinaccio al gruppo del Sella, zaino in spalla.',
+    numeroRacconti: 0,
+    colore: 'purple',
+  },
+];
+---
+
+<Base title="Il blog di Asya">
+  <main class="container">
+
+    <header class="site-header">
+      <p class="eyebrow">Diario di viaggio</p>
+      <h1 class="site-title">Il blog di Asya</h1>
+      <p class="site-subtitle">
+        Racconti lunghi dai posti che mi hanno cambiata.
+      </p>
+    </header>
+
+    <section class="viaggi-section">
+      <p class="section-label">— In quale viaggio ti immergi oggi —</p>
+
+      <div class="viaggi-grid">
+        {viaggi.map((v) => (
+          <article class={`viaggio-card colore-${v.colore}`}>
+            <div class="cover"></div>
+            <div class="content">
+              <p class="periodo">{v.periodo}</p>
+              <h2 class="titolo">{v.titolo}</h2>
+              <p class="descrizione">{v.descrizione}</p>
+              <p class="numero-racconti">
+                {v.numeroRacconti === 0 ? 'In arrivo' : `${v.numeroRacconti} racconti`}
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>
+        Cliccando su un viaggio si aprira' la sua pagina con introduzione,
+        mappa e tutti i racconti.
+      </p>
+    </footer>
+
+  </main>
+</Base>
+
+<style>
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 5rem;
+  }
+
+  .site-header {
+    text-align: center;
+    padding-bottom: 2.5rem;
+    border-bottom: 0.5px solid var(--color-border);
+    margin-bottom: 3rem;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    margin-bottom: 14px;
+  }
+  .site-title {
+    font-family: var(--font-serif);
+    font-size: 44px;
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 14px;
+  }
+  .site-subtitle {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    text-align: center;
+    margin-bottom: 1.75rem;
+  }
+
+  .viaggi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .viaggio-card {
+    background: var(--color-card-bg);
+    border: 0.5px solid var(--color-border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .viaggio-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  .cover {
+    height: 160px;
+  }
+  .colore-coral .cover  { background: #f5c4b3; }
+  .colore-teal .cover   { background: #9fe1cb; }
+  .colore-amber .cover  { background: #fac775; }
+  .colore-purple .cover { background: #cecbf6; }
+
+  .content {
+    padding: 1.25rem 1.4rem 1.5rem;
+  }
+  .periodo {
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    margin-bottom: 8px;
+  }
+  .titolo {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .descrizione {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .numero-racconti {
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+  }
+
+  .site-footer {
+    margin-top: 3.5rem;
+    padding-top: 1.75rem;
+    border-top: 0.5px solid var(--color-border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--color-text-tertiary);
+  }
+</style>
